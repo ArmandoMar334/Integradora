@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { movement } from '../../scripts/moveCar';
-
+//changes
 
 export default function ControlScreen() {
 
