@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Dimensions, ScrollView } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { movement } from '../../scripts/moveCar';
+
 
 export default function ControlScreen() {
   
@@ -13,7 +15,12 @@ export default function ControlScreen() {
     console.log('Button state:', newRunningState ? 'OFF' : 'ON');
   };
 
+export default function ControlScreen() {
+  const [data, setData] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [tokenMessage, setTokenMessage] = useState<string | null>(null);
   return (
+
     <View style={styles.container}>
       <Text style={styles.header}>Panel de Control</Text>
       <View style={styles.buttonRowUpDown}>
@@ -29,15 +36,13 @@ export default function ControlScreen() {
           
         </FontAwesome.Button>
       </View>
-
       <View style={styles.buttonRow}>
         <FontAwesome.Button
           name="arrow-left"
           backgroundColor="#3b5998"
-          borderRadius={55}
-          size={40}
-          onLongPress={() => movement(true,"LEFT")}
-          onPressOut={() => movement(false,"LEFT")}
+          onLongPress={() => movement(true, "LEFT")}
+          onPressOut={() => movement(false, "LEFT")}
+
           style={styles.button}
         >
         
@@ -56,17 +61,14 @@ export default function ControlScreen() {
         <FontAwesome.Button
           name="arrow-right"
           backgroundColor="#3b5998"
-          borderRadius={55}
-          size={40}
-          onLongPress={() => movement(true,"RIGHT")}
-          onPressOut={() => movement(false,"RIGHT")}
+          onLongPress={() => movement(true, "RIGHT")}
+          onPressOut={() => movement(false, "RIGHT")}
           style={styles.button}
         >
           
         </FontAwesome.Button>
       </View>
-      
-      <View style={styles.buttonRowUpDown}>
+      <View style={styles.buttonRow}>
         <FontAwesome.Button
           name="arrow-down"
           backgroundColor="#3b5998"
