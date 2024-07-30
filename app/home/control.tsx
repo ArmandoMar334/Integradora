@@ -6,18 +6,31 @@ import { movement } from '../../scripts/moveCar';
 
 
 export default function ControlScreen() {
+  
+  const [isRunning, setIsRunning] = useState(false);
+
+  const handlePress = () => {
+    const newRunningState = !isRunning;
+    setIsRunning(newRunningState);
+    console.log('Button state:', newRunningState ? 'OFF' : 'ON');
+  };
+
+export default function ControlScreen() {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [tokenMessage, setTokenMessage] = useState<string | null>(null);
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.header}>Control Panel</Text>
-      <View style={styles.buttonRow}>
+
+    <View style={styles.container}>
+      <Text style={styles.header}>Panel de Control</Text>
+      <View style={styles.buttonRowUpDown}>
         <FontAwesome.Button
           name="arrow-up"
           backgroundColor="#3b5998"
-          onLongPress={() => movement(true, "UP")}
-          onPressOut={() => movement(false, "UP")}
+          borderRadius={55}
+          size={40}
+          onLongPress={() => movement(true,"UP")}
+          onPressOut={() => movement(false,"UP")}
           style={styles.button}
         >
           
@@ -38,7 +51,7 @@ export default function ControlScreen() {
         <FontAwesome.Button
          name={isRunning ? "play" : "stop"}
          backgroundColor={isRunning ? "#5cb85c" : "#d9534f"}
-         size={20}
+         size={20}          
          onPress={handlePress}
          style={styles.button}
        >
@@ -59,93 +72,63 @@ export default function ControlScreen() {
         <FontAwesome.Button
           name="arrow-down"
           backgroundColor="#3b5998"
-          onLongPress={() => movement(true, "DOWN")}
-          onPressOut={() => movement(false, "DOWN")}
+          borderRadius={55}
+          size={40}
+          onLongPress={() => movement(true,"DOWN")}
+          onPressOut={() => movement(false,"DOWN")}
           style={styles.button}
         >
           
         </FontAwesome.Button>
       </View>
-
-      {tokenMessage && <Text style={styles.tokenMessage}>{tokenMessage}</Text>}
-      {error && <Text style={styles.error}>{error}</Text>}
-    </ScrollView>
-
+    </View>
   );
 }
-
-// const chartConfig = {
-//   backgroundGradientFrom: "#ffffff",
-//   backgroundGradientTo: "#ffffff",
-//   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-//   labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-//   style: {
-//     borderRadius: 16,
-//   },
-//   propsForDots: {
-//     r: "6",
-//     strokeWidth: "2",
-//     stroke: "#ffa726"
-//   }
-// };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    padding: 10,
   },
   header: {
-    fontSize: 24,
+    fontSize: 34,
     textAlign: 'center',
     marginVertical: 20,
+    color: '#042654',
+    fontWeight: 'bold',
   },
   buttonRowUpDown: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     paddingHorizontal: 10,
     marginHorizontal: 15,
-    marginBottom: 10, 
+    marginBottom: 10,
   },
-  buttonRow: {
+  buttonRow: {    
     flexDirection: 'row',
     marginVertical: 15,
     marginHorizontal: 15,
-    marginBottom: 15,    
-    justifyContent: 'space-between',
-    width: '100%',
+    marginBottom: 15,   
+    justifyContent: 'space-around',
+    paddingLeft: 5,
+    paddingRight: 5,
+    backgroundColor: '#F8F9FA',
+    borderRadius: 10,
+    
+
   },
   button: {
-    paddingHorizontal: 10,
-    marginHorizontal: 15,
-    width: 75,
+    paddingHorizontal: 45,
+    marginHorizontal: 10,
+    width: 85,
     height: 95,
-    shadowColor: '#fff',
-    shadowOpacity: 0.9,
     justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    padding: 10,
+    marginRight: -5,
+    
   },
-
-  tokenMessage: {
-    color: 'green',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-  // graphHeader: {
-  //   fontSize: 20,
-  //   textAlign: 'center',
-  //   marginVertical: 20,
-  // },
-  // graphContainer: {
-  //   alignItems: 'center', // Centrar el gráfico horizontalmente
-  // },
-  // graph: {
-  //   marginVertical: 8,
-  //   borderRadius: 16,
-  // },
 });
