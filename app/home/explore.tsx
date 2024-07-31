@@ -11,7 +11,7 @@ const defaultCenter = {
   lat: 40.748817,
   lng: -73.985428
 };
-
+//Fix
 export default function GPSScreen() {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
